@@ -43,7 +43,7 @@
 			?>
 				<div class="custom-header-image" style="background-image: url('<?php echo header_image() ?>'); width: <?php echo get_custom_header()->width; ?>px; height: <?php echo get_custom_header()->height ?>px;">
 				<div class="container">
-                <?php if ( function_exists( 'jetpack_the_site_logo' ) ) jetpack_the_site_logo(); ?>
+                <?php //if ( function_exists( 'jetpack_the_site_logo' ) ) jetpack_the_site_logo(); ?>
                 <div class="site-branding-text">
 				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' )?></a></h1>
 				<h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
@@ -55,7 +55,7 @@
 			} else {
 			?>
 				<div class="container">
-                <?php if ( function_exists( 'jetpack_the_site_logo' ) ) jetpack_the_site_logo(); ?>
+                <?php //if ( function_exists( 'jetpack_the_site_logo' ) ) jetpack_the_site_logo(); ?>
                 <div class="site-branding-text">
 				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' )?></a></h1>
 				<h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
@@ -77,20 +77,15 @@
  		?>	
 		<nav id="site-navigation" class="main-navigation" role="navigation">
 
-			<h1 class="menu-toggle sr-only screen-reader-text"><?php _e( 'Primary Menu', 'flat-bootstrap' ); ?></h1>
+			<h2 class="menu-toggle screen-reader-text sr-only "><?php _e( 'Primary Menu', 'flat-bootstrap' ); ?></h2>
 			<div class="skip-link"><a class="screen-reader-text sr-only" href="#content"><?php _e( 'Skip to content', 'flat-bootstrap' ); ?></a></div>
 
 		<?php
-		// Set up the navbar. This can be overriden by child themes or a plugin.
+		// Collapsed navbar menu toggle
 		global $xsbf_theme_options;
 		$navbar = '<div class="navbar ' . $xsbf_theme_options['navbar_classes'] . '">'
-			.'<div class="container">';
-
-		// Navbar header (branding and mobile menu toggle)
-		$navbar .= '<div class="navbar-header">'
-          	//.'<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-search-collapse">'
-            //.'<span class="glyphicon glyphicon-search"></span>'
-          	//.'</button>'
+			.'<div class="container">'
+        	.'<div class="navbar-header">'
           	.'<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">'
             .'<span class="icon-bar"></span>'
             .'<span class="icon-bar"></span>'
@@ -102,29 +97,17 @@
 		$navbar .= '<a class="navbar-brand" href="'
 			.esc_url( home_url( '/' ) )
 			.'" rel="home">'
+			// .get_bloginfo( 'name' )
+			// .'<img src="http://52.32.251.242/wp-content/uploads/2016/10/gcdi_logo.jpg" style="height:100%; display:inline-block;" alt="'
+			.'<img src="http://52.32.251.242/wp-content/uploads/2016/10/GCDIlogo-graytype.fw_.png" style="height:100%;
+				display:inline-block;" alt="'
 			.get_bloginfo( 'name' )
+			.'">'
 			.'</a>';
-/*
-		// Add search to navbar
-		$navbar .= '
-		<form class="navbar-form navbar-right" role="search" method="get" action="'
-		.get_bloginfo('url') . '">
-        <button id="search-icon" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
-        <div id="search-form" class="form-group">
-			<div class="input-group">
-				<input type="search" class="form-control" placeholder="Search" name="s">
-				<!-- <span id="search-button" class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span> -->
-			</div>
-			<div class="input-group">
-				<button type="submit" id="search-button" class=""><span class="glyphicon glyphicon-search"></span></button>
-			</div>
-		</div>
-		</form>
-		';
-*/
+		
         $navbar .= '</div><!-- navbar-header -->';
 
-		// Display the desktop (collapsible) navbar
+		// Display the desktop navbar
 		$navbar .= '<div class="navbar-collapse collapse">';
 		$navbar .= wp_nav_menu( 
 			array(  'theme_location' => 'primary',
@@ -135,51 +118,13 @@
 			'echo'	=> false
 			) 
 		);
-		
-/* from: http://jsbin.com/futeyo/1/edit?html,css,js,output
-<!-- Define your search form -->
-      <form class="navbar-form navbar-left" role="search">
-        <!-- Define a button to toggle the search area -->
-        <button id='search-button' class='btn btn-default '><span class='glyphicon glyphicon-search'></span></button>
-        <!-- Create your entire search form -->
-        <div id='search-form' class="form-group">
-          <div class="input-group">
-            <span id='search-icon' class="input-group-addon"><span class='glyphicon glyphicon-search'></span></span>
-            <input type="text" class="form-control" placeholder="Search">
-          </div>
-        </div>
-      </form>
-*/
-		
-		$navbar .= '</div><!-- navbar-collapse -->';
-/*
-		// Add search to navbar
-		//$navbar .= '<div class="navbar-search-collapse collapse">';
-		$navbar .= '
-		<!-- <div style="margin-top: -40px;"> -->
-		<form class="navbar-form pull-right" role="search" method="get" action="'
-		.get_bloginfo('url') . '">
-        <button id="search-icon" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
-        <div id="search-form" class="form-group">
-			<div class="input-group">
-				<input type="search" class="form-control" placeholder="Search" name="s">
-				<!-- <span id="search-button" class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span> -->
-			</div>
-			<div class="input-group">
-				<button type="submit" id="search-button" class=""><span class="glyphicon glyphicon-search"></span></button>
-			</div>
-		</div>
-		</form>
-		<!-- </div> -->
-		'; 
-		//$navbar .= '</div>';
-*/
-		$navbar .= '</div><!-- .container -->';
-		$navbar .= '</div><!-- .navbar -->';
-		
+				
 		echo apply_filters( 'xsbf_navbar', $navbar );
 		?>
-
+			
+		
+		</div><!-- .container -->
+		</div><!-- .navbar -->
 		</nav><!-- #site-navigation -->
 
 	</header><!-- #masthead -->

@@ -1,40 +1,356 @@
 /*
-Theme Name: Pratt
+Theme Name: Pratt Child Theme
 Theme URI: http://xtremelysocial.com/wordpress/pratt/
 Description: Pratt by XtremelySocial is an adaptation of the "Pratt" theme by Blacktie.co. It is a modern, fully responsive, "flat" style theme with a nice color palette, big full-width images, and full-width colored sections. The navbar is fixed at the top of the page for easy navigation. It includes several beautiful header images for businesses, photographers, musicians, writers and you can upload your own as well. For more information go to http://xtremelysocial.com/wordpress/pratt/.
-Author: XtremelySocial and Blacktie
+Author: XtremelySocial
+Modified by: Ian Phillips
 Author URI: http://xtremelysocial.com
-Version: 1.4
+Version: 1.5
 License: GNU General Public License
 License URI: http://www.opensource.org/licenses/GPL-3.0
 Template: flat-bootstrap
-Template Version: 1.7
+Template Version: 1.9
 Tags: one-column, right-sidebar, left-sidebar, fluid-layout, responsive-layout, custom-background, custom-header, custom-menu, featured-images, featured-image-header, full-width-template, flexible-header, rtl-language-support, theme-options, translation-ready, sticky-post, threaded-comments, light, blue
 
 Pratt WordPress theme, Copyright (C) 2014 XtremelySocial
 Pratt WordPress theme is licensed under the GPL.
 See readme.txt file for license information on components used in this theme.
 */
+/*--------------------------------------------------------------
+>>> TABLE OF CONTENTS:
+----------------------------------------------------------------
+# Typography
+# Elements
+# Forms and buttons
+# Navigation
+	## Menus
+# Content
+	## Header
+	## Footer
+# Padding
+--------------------------------------------------------------*/
 
-/* IMPORT the parent theme's stylesheet(s) */
-@import url("../flat-bootstrap/style.css");
+/* 
+ * IMPORT the parent theme's stylesheet(s). NOTE: This was moved to functions.php for
+ * performance reasons.
+ */
+/*@import url("../flat-bootstrap/style.css");*
 
-/* OVERRIDDEN styles from the parent theme's stylesheet(s) */
+/*--------------------------------------------------------------
+## Typography
+--------------------------------------------------------------*/
 
-/* Need room for fixed navbar at the top. If you change the height of it, change it 
- * here as well. Make sure the navbar doesn't wrap on tablets or this won't work 
- * right.
+h1, h2 {
+	/*color: #6b6d71;*/
+	color: #4a4c4f;
+}
+
+h1.header-image-title {
+	color:#f4b01b;
+	/*color:#ffffff;*/
+}
+
+/* This makes these heading tags bold withing page content area (as opposed to sidebar area) */
+.entry-content h2, h3 {
+	font-weight: bold;
+}
+
+/* This makes the text inside <p> tags within the page content area 20% larger than other <p> text (e.g., in the sidebar)
+.content-area, .content-area-wide p {
+	font-size:120%;
+}*/
+
+/* keeps captions text size smaller than body text size */
+.wp-caption p {
+	font-size:60%;
+}
+
+/* removes margin for captions below images*/
+.wp-caption-text, .gallery-caption {
+	margin: 0px;
+	padding: 1px;
+}
+
+a {
+	/*color:#00b9e5;*/
+	/* orange */
+	color:#f4b01b;
+}
+
+a:hover, a:focus {
+	/*color:#66e0ff;*/
+	/* light orange */
+	color:#f8cc6d;
+}
+
+blockquote {
+	border-left:5px solid #f4b01b;
+}
+
+/* this removes some white space above right-hand widgets div to make level 
+with top of main text */
+aside#search-2 h2 {
+	margin-top:0px;
+}
+
+/* added an extra 10px between main content and right-hand secondary panel */
+#primary {
+	padding-right:25px;
+}
+
+body {
+	font-weight: 400;
+}
+
+
+/*--------------------------------------------------------------
+## Elements
+--------------------------------------------------------------*/
+
+/* Color the collapsible panel hover color to match the link hover color */
+.panel-title>a:hover, 
+.panel-title>small:hover, 
+.panel-title>.small:hover, 
+.panel-title>small>a:hover, 
+.panel-title>.small>a:hover {
+	color: #f8cc6d;
+}
+
+/* only use this class inside the <img> tag if the original image width for people is under 125px */
+.circle-125 {
+	width:125px; 
+	height:125px;
+}
+
+
+.mask {
+  display: inline-block;
+  width: 125px;
+  height: 125px;
+  border-radius: 50%;
+  overflow: hidden;
+  vertical-align:middle; 
+  line-height:normal;
+  border: 1px solid;
+}
+
+#pplbox {
+	vertical-align: middle;
+	margin-bottom: 30px;
+	line-height:150px;
+}
+
+.h4 {
+	font-family: "Raleway", Arial, "Helvetica Neue", sans-serif; 
+}
+
+.vbottom {
+    display: inline-block;
+    vertical-align: bottom;
+    float: none;
+}
+
+/* this matches the font in the search and send buttons to the body font for the site*/
+.form-group .search-submit.btn.btn-primary,
+.wpcf7-form-control.wpcf7-submit {
+	font-family: "Lato", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 300;
+    font-size: 18px;
+}
+
+/*.display-posts-listing .listing-item {
+	margin: 40px auto;
+}
+
+.display-posts-listing .listing-item .title {
+	display:block;
+	font-size:24px;
+
+}*/
+
+#spacebox {
+	vertical-align: middle;
+	margin-bottom: 30px;
+	line-height:175px;
+}
+
+.mask-175 {
+  display: inline-block;
+  position: relative;
+  width: 175px;
+  height: 175px;
+  border-radius: 50%;
+  overflow: hidden;
+  vertical-align:middle; 
+  line-height:normal;
+  border: solid;
+}
+
+/* only use this class inside the <img> tag if the original image width for spaces is under 175px */
+.circle-175 {
+	width: 175px;
+	height: 175px;
+}
+
+#spaceinfo {
+	line-height: 24px;
+	margin-top: 15px;
+	text-align: left;
+	display: block;
+}
+
+#spacebox {
+	text-align:left;
+}
+
+#spacename {
+	display: block;
+	line-height: 30px;
+	margin-top: 15px;
+}
+
+/* this modified how posts are displayed with the display category posts shortcode*/
+ul.lcp_catlist {
+	list-style-type:none;
+	padding-left:0px;
+}
+
+ul.lcp_catlist>li {
+	margin-top:50px;
+}
+
+ul.ecs-event-list {
+	list-style-type:none;
+	padding-left:0px;
+}
+li.ecs-event {
+	margin-top:50px;	
+}
+
+h4.entry-title {
+	font-size:200%;
+	line-height: 1.2;
+}
+
+/* aligns embedded images with top of paragraph text*/
+.alignleft {
+    float: left;
+    height: auto;
+    margin: 10px 10px 10px 0px;
+}
+
+.alignright {
+    float: right;
+    height: auto;
+    margin: 10px 0px 10px 10px;
+}
+
+/* puts some whitespace between page text and edit link */
+footer.entry-meta {
+	margin-top: 20px;
+}
+
+/* puts space above headings so they don't get hidden behind the menu when
+using page anchors */
+.drop50px {
+	padding-top: 50px;
+}
+
+/*--------------------------------------------------------------
+## Forms and buttons
+--------------------------------------------------------------*/
+
+/* Set colors for input buttons (Search, Reply). Change these in your child theme. */
+button,
+html input[type="button"],
+input[type="submit"] {
+    color: #fff;
+    background-color: #f4b01b;
+    border-color: #f4b01b;
+}
+button:hover, 
+button:focus,
+html input[type="button"]:hover, 
+html input[type="button"]:focus,
+input[type="submit"]:hover, 
+input[type="submit"]:focus {
+    color: #fff;
+    background-color: #f8cc6d;
+    border-color: #f8cc6d;
+}
+
+
+/* Bootstrap uses "active" style on the <li>, but WordPress paginate_links() uses 
+ * "current" in a <span> tag on the link. Also set the hover to match the primary button
+ * color. 
+ */
+.pagination>li>a, 
+.pagination>li>span,
+span.page-numbers.current {
+	color: #f4b01b;
+}
+.pagination>li>a:hover, 
+.pagination>li>span:hover, 
+.pagination>li>a:focus,
+.pagination>li>span:focus,
+span.page-numbers.current {
+	z-index: 2;
+	color: #fff;
+    background-color: #f4b01b;
+    border-color: #f4b01b;
+}
+
+/* this is formatting for the contact 7 forms used on the gcdi site*/
+.wpcf7 label {
+	width: 50%;
+	min-width: 250px;
+}
+
+.wpcf7 input[type="text"],
+.wpcf7 input[type="email"] {
+	width: 50%;
+	min-width: 250px;
+}
+
+.captcha input[type="text"] {
+	width: 95%;
+}
+
+
+/*--------------------------------------------------------------
+# Navigation
+--------------------------------------------------------------*/
+
+.navbar-default {
+	background-color: #ffffff;
+	border-color: #E7E7E7;
+}
+
+
+.navbar-brand {
+	padding-right: 5px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+
+/*--------------------------------------------------------------
+## Menus
+--------------------------------------------------------------*/
+/* 
+ * Need room for fixed navbar at the top. If you change the height of it, change it 
+ * here as well. Make sure the navbar doesn't wrap on tablets or it won't look good.
  */
 body {
-    padding-top: 50px;
+	padding-top: 50px;
+    background-color: #ffffff;
 }
 
-/* When WordPress admin bar is displayed, move theme menu down below it. Note that the
+/* 
+ * When WordPress admin bar is displayed, move theme menu down below it. Note that the
  * media query here uses the exact breakpoint in WordPress not the breakpoint in this
- * theme. */
-.navbar-fixed-top { 
-	top: 0px; 
-}
+ * theme. 
+ */
 body.admin-bar .navbar-fixed-top { 
 	top: 32px !important; 
 }
@@ -48,16 +364,226 @@ body.admin-bar #wpadminbar {
 	}
 }
 
-/* Hide search text box by default as we have javascript to enable it on click */
-/*#search-form { display: none; }*/
+/* large screen for this theme */
+@media screen and (min-width:1200px) {
+	.iblock {
+		padding-left:10px;
+		display:inline-block;
+		vertical-align:middle; 
+		line-height:normal;
+	}
+
+	#pplbox, #smctr {
+		text-align: left;
+	}
+
+	/* this floats the navbar to the right when the screen is wide enough to have logo and nav on same line*/
+	.navbar-default .navbar-nav {
+		float:right;
+	}
+
+}
+
+/* medium screen */
+@media screen and (max-width:1200px) {
+/*	h1,h2,h3 {
+		font-size: 3vw;
+	}*/
+
+	.iblock {
+		display:block;
+		line-height: 30px;
+	}
+
+	#pplbox {
+		text-align: center;
+	}
+
+	.h4 {
+		/*color:#0000ff;*/
+	}
+
+}
+
+/* not a screen size break */
+@media screen and (max-width:1134px) {
+/*	h1,h2,h3 {
+		font-size: 4vw;
+	}*/
+
+	.iblock {
+		display:block;
+		line-height: 30px;
+	}
+
+
+	#pplbox {
+		text-align: center;
+	}
+
+	.h4 {
+		/*color:#ffff00;*/
+	}
+
+}
+
+/* small screen */
+@media screen and (max-width:992px) {
+/*	h1,h2,h3 {
+		font-size: 4vw;
+	}*/
+
+	.iblock {
+		padding-left:10px;
+		display:inline-block;
+		vertical-align:middle; 
+		line-height:normal;
+	}
+	
+	#pplbox {
+		text-align:left;
+	}
+
+	.h4 {
+		/*color:#000000;*/
+	}
+
+	/* this reduces the padding of navbar items to prevent nav bar from wrapping to second line when screen shrinks */
+	.navbar-default .navbar-nav > li > a {
+		padding-left:10px;
+		padding-right:10px;
+	}
+	
+}
+
+/* xs screen */
+@media screen and (max-width:768px) {
+	h2, h3 {
+		font-size:24px;
+	}
+
+	.iblock {
+		padding-left:10px;
+		display:inline-block;
+		vertical-align:middle; 
+		line-height:normal;
+	}
+
+	#pplbox {
+		text-align:left;
+	}
+
+	.h4 {
+		/*color:#33cc33;*/
+	}
+
+}
+
+/* not a screen size break */
+@media screen and (max-width:720px) {
+	.iblock {
+		display:block;
+		line-height: 30px;
+	}
+	
+	#pplbox {
+		text-align: center;
+	}
+
+	.h4 {
+		/*color:#ffff00;*/
+	}
+
+}
+
+/* not a screen size break */
+@media screen and (max-width:500px) {
+	.iblock {
+		display:block;
+		line-height: 30px;
+	}
+
+	.h4 {
+		white-space: pre;
+	}
+
+	.content-panel {
+		text-align:center;
+	}
+	
+	#pplbox, #smctr {
+		text-align: center;
+	}
+
+	#spaceinfo {
+		text-align: center;
+	}
+
+	#spacebox {
+		text-align: center;
+	}
+
+	/* formatting search button so it wraps on mobile screen (offsets otherwise) */
+	.form-group .search-submit.btn.btn-primary {
+		display:block;
+	}
+
+	.newsthumb {
+		max-width: 100%;
+    	margin-top:5px;
+    	margin-bottom:20px;
+    	max-height:200px;
+    	display:block;
+	}
+
+	p.newsexcerpt {
+		display:block;
+	}
+
+}
+
+@media screen and (min-width:500px) {
+	.h4 br {
+		display: none;
+	}
+
+	/* center homepage search bar when device is over 500px wide (left align otherwise)*/
+	#homesearch {
+		text-align:center;
+	}
+
+	/* formats the image for posts on homepage */
+	.newsthumb {
+		max-width: 25%;
+		float:left;
+	    margin-right:20px;
+	    margin-top:5px;
+	    max-height:200px;
+	}
+
+}
+
+/*--------------------------------------------------------------
+# Content
+--------------------------------------------------------------*/
+
+
+/*--------------------------------------------------------------
+## Header
+--------------------------------------------------------------*/
 
 /* Change height of cover (home page) and section (other pages) images */
 .cover-image, 
 .cover-image-overlay,
 .section-image, 
 .section-image-overlay {
-	height: 480px; /* cross-browser */
-	min-height: 480px;
+	height: 300px; /* cross-browser */
+	min-height: 300px;
+}
+
+/* This simulates a 50% opacity black filter over the header image */
+.section-image-overlay {
+	background-color:rgba(0,0,0,0.5);
 }
 
 /* Change cover (front page) and section image crop to center. Bold the h1 tag. */
@@ -93,22 +619,12 @@ body.admin-bar #wpadminbar {
 }
 */
 
-/* Add some additional padding around the sections */
-.section {
-	padding-top: 50px;
-	padding-bottom: 50px;
-}
-.padding-top {
-	padding-top: 50px;
-}
-.padding-bottom {
-	padding-bottom: 50px;
-}
-.page-posts {
-	padding-bottom: 25px;
-}
+/*--------------------------------------------------------------
+## Footer
+--------------------------------------------------------------*/
 
-/* Reduce the footer heading h2 to match the h3 font size and reduce the size of labels. 
+/* 
+ * Reduce the footer heading h2 to match the h3 font size and reduce the size of labels. 
  * e.g. in a contact form.
  */
 .sidebar-footer h2 {
@@ -120,6 +636,105 @@ body.admin-bar #wpadminbar {
 	padding-bottom: 15px;
 }
 .sidebar-footer label {
-	font-size: 16px;
+	font-size: 18px;
 	line-height: 22px;
+}
+
+.green {
+	background: #ffffff;
+}
+
+.sidebar-footer a:hover:not(.btn), 
+.sidebar-footer a:focus:not(.btn), 
+.footer-nav-menu a:hover:not(.btn),
+.footer-nav-menu a:focus:not(.btn) {
+/*.after-footer a:hover:not(.btn),
+.after-footer a:focus:not(.btn) {*/
+	color: #f4b01b;
+}
+
+/*--------------------------------------------------------------
+# Padding
+--------------------------------------------------------------*/
+
+/* 
+ * Adjust the padding only in sections for now (Flat Bootstrap v1.9).
+ * TO-DO: Flat Bootstrap v2.0 completely changes the way section padding is handled.
+ * It already increases it to 48px, so remove this.
+*/
+.section {
+	padding-top: 0px;
+	padding-bottom: 0px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+/*.padding-top {
+	padding-top: 50px;
+}
+.padding-bottom {
+	padding-bottom: 50px;
+}*/
+.page-posts {
+	padding-bottom: 25px;
+}
+
+.img-responsive {
+	display: block;
+	margin: auto 0;
+}
+
+.fill {
+	width:100%;
+	height:100%;
+	background-position:center;
+	background-size:cover;
+}
+
+/* this padding makes the top of the text in conent-area and sidebar level */
+.content-panel {
+	padding-top:10px;
+	margin-bottom:20px;
+}
+
+.content-panel, .content-panel-wide > p {
+	font-family: "Raleway", Arial, "Helvetica Neue", sans-serif;
+	/*font-weight:600;*/
+	text-align: left;
+}
+
+/* this adds padding between the header image and the page body text*/
+#primary {
+	padding-top: 30px;
+}
+
+.tagcloud {
+	padding-bottom: 20px;
+}
+
+.entry-summary p {
+	margin-top: 11px;
+}
+
+
+/*-------------------------------------------------------------
+# Buttons
+--------------------------------------------------------------*/
+
+.btn-hollow {
+	padding:5%;
+	margin:5% 0;
+}
+
+#hpbar a.btn.btn-hollow, button.btn.btn-hollow {
+    background-color: transparent;
+    border: 2px solid #fff;
+    color: #4a4c4f;
+}
+
+.btn-transparent {
+	background-color: #f8cc6d;
+}
+
+.btn-transparent:hover, .btn-transparent:focus {
+	background-color: #f4b01b;
 }
